@@ -32,7 +32,8 @@ export default function Protected(props:any)
           const usersCollection = collection(db, "users");
           const usersSnapshot = await getDocs(usersCollection);
           const usersList = usersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-         setUsers(usersList)
+        //@ts-ignore
+          setUsers(usersList)
           console.log(`users are ${usersList}`)
           fetchUserByName("qqq")
         };
@@ -71,6 +72,7 @@ export default function Protected(props:any)
         <div>
             {users.length>0?<div>
                 {
+                  //@ts-ignore
                     users.map(user=>(<li key={user.id}>{user.name} - {user.age}</li>))
                 }
             </div>:<div className=" text-black">loading</div>}
